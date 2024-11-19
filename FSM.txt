@@ -1,0 +1,39 @@
+flowchart LR
+    subgraph Automatic Mode
+        A1([**Check time**])-----A2([**Red - Green**])
+        A2--timeFlag == 0---A3([**Red - Amber**])
+        A3--timeFlag == 0---A4([**Green - Red**])
+        A4--timeFlag == 0---A5([**Amber - Red**])
+        A5--timeFlag == 0---A1
+    end
+
+    subgraph Manual Mode
+        M1([**Red - Green**])--Button2 pressed---M2([**Red - Amber**])
+        M2--timeFlag == 0---M3([**Green - Red**])
+        M3--Button2 pressed---M4([**Amber - Red**])
+        M4--timeFlag == 0---M1
+    end
+
+    subgraph Modify Mode
+        subgraph Red
+            R1([**Released**])--Button2 pressed---R2([**Pressed** <br> _time++_])
+            R2--Button2 long pressed---R3([**Long pressed** <br> _time++ every 0.5s_])
+            R2--Button2 released---R1
+            R3--Button2 released---R1
+            R1--Button1 pressed---R4([**Save** <br> _time to systemBuffer_])
+        end
+        subgraph Green
+            G1([**Released**])--Button2 pressed---G2([**Pressed** <br> _time++_])
+            G2--Button2 long pressed---G3([**Long pressed** <br> _time++ every 0.5s_])
+            G2--Button2 released---G1
+            G3--Button2 released---G1
+            G1--Button1 pressed---G4([**Save** <br> _time to systemBuffer_])
+        end
+    end
+
+    I((Init))-----A1
+    A5 & A2 & A3 & A4 --Button1 long pressed--- M1
+    M1 & M2 & M3 & M4 --Button1 long pressed--- R1
+    R4--Button1 long pressed---G1
+    G4--Button1 long pressed---A1
+
