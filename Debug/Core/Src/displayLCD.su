@@ -1,0 +1,4 @@
+../Core/Src/displayLCD.c:15:6:updateLCD_Change	16	static
+../Core/Src/displayLCD.c:45:6:updateLCD_AutoMode	8	static
+../Core/Src/displayLCD.c:56:6:updateLCD_ModifyMode	16	static
+../Core/Src/displayLCD.c:80:6:updateLCD_ManualMode	4	static

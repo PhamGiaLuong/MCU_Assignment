@@ -7,73 +7,73 @@
 
 #include "displayLCD.h"
 
+char row1[20] = "";
+char row2[20] = "";
+
 // Display on LCD the next mode after change
 // targetMode: next mode
 void updateLCD_Change(uint8_t targetMode){
-	char str[20];
-	sprintf(str, "Changing to...");
-	lcd_goto_XY(1, 1);
-	lcd_send_string(str);
+	sprintf(row1, "Changing to...");
+	lcd_goto_XY(0, 0);
+	lcd_send_string(row1);
 
 	switch(targetMode){
 	case AutoMode:
-		sprintf(str, "Auto Mode");
-		lcd_goto_XY(2, 4);
-		lcd_send_string(str);
+		sprintf(row2, "Auto Mode");
+		lcd_goto_XY(1, 4);
+		lcd_send_string(row2);
 		break;
 	case ModifyMode:
-		sprintf(str, "Modify Mode");
-		lcd_goto_XY(2, 2);
-		lcd_send_string(str);
+		sprintf(row2, "Modify Mode");
+		lcd_goto_XY(1, 2);
+		lcd_send_string(row2);
 		break;
 	case ManualMode:
-		sprintf(str, "Manual Mode");
-		lcd_goto_XY(2, 2);
-		lcd_send_string(str);
+		sprintf(row2, "Manual Mode");
+		lcd_goto_XY(1, 2);
+		lcd_send_string(row2);
 		break;
 	default:
-		sprintf(str, "undefine...");
-		lcd_goto_XY(2, 2);
-		lcd_send_string(str);
+		sprintf(row2, "undefine...");
+		lcd_goto_XY(1, 2);
+		lcd_send_string(row2);
 		break;
 	}
 }
 
 // Display info on LCD in Auto mode
 void updateLCD_AutoMode(void){
-	char str1[15];
-	char str2[15];
+	lcd_goto_XY(0, 0);
+	sprintf(row1, "Lane X:    %d", getTimeCounter(X));
+	lcd_send_string(row1);
 	lcd_goto_XY(1, 0);
-	sprintf(str1, "Lane X:  %d", getTimeCounter(X));
-	lcd_send_string(str1);
-	lcd_goto_XY(2, 0);
-	sprintf(str2, "Lane Y:  %d", getTimeCounter(Y));
-	lcd_send_string(str2);
+	sprintf(row2, "Lane Y:    %d", getTimeCounter(Y));
+	lcd_send_string(row2);
 }
 
 // Display info on LCD in Modify mode
 // color: Red, Green
 void updateLCD_ModifyMode(uint8_t color){
-	char str[20];
-	lcd_goto_XY(1, 0);
+	lcd_goto_XY(0, 0);
 
 	switch(color){
 	case Red:
-		sprintf(str, "Modify on Red");
-		lcd_send_string(str);
+		sprintf(row1, "Modify on Red");
+		lcd_send_string(row1);
 		break;
 	case Green:
-		sprintf(str, "Modify on Green");
-		lcd_send_string(str);
+		sprintf(row1, "Modify on Green");
+		lcd_send_string(row1);
 		break;
 	default:
-		sprintf(str, "Modify on ...");
-		lcd_send_string(str);
+		sprintf(row1, "Modify on ...");
+		lcd_send_string(row1);
 		break;
 	}
 
-	lcd_goto_XY(2, 0);
-	sprintf(str, "Value:  %d", getCounter());
+	lcd_goto_XY(1, 0);
+	sprintf(row2, "Value:    %d", getCounter());
+	lcd_send_string(row2);
 }
 
 // Display info on LCD in Manual mode

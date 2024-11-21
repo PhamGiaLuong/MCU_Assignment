@@ -67,13 +67,17 @@ void lcd_clear_display (void)
 void lcd_goto_XY (int row, int col)
 {
 	uint8_t pos_Addr;
-	if(row == 1)
+	if (row == 0)
 	{
-		pos_Addr = 0x80 + row - 1 + col;
+		pos_Addr = 0x80 + col;
+	}
+	else if (row == 1)
+	{
+		pos_Addr = 0xC0 + col;
 	}
 	else
 	{
-		pos_Addr = 0x80 | (0x40 + col);
+		return;
 	}
 	lcd_send_cmd(pos_Addr);
 }

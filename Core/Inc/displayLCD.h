@@ -9,6 +9,7 @@
 #define INC_DISPLAYLCD_H_
 
 #include "global.h"
+#include "I2C_LCD.h"
 
 void updateLCD_Change(uint8_t targetMode);
 void updateLCD_AutoMode(void);

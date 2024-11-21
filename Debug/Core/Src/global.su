@@ -1,0 +1,9 @@
+../Core/Src/global.c:22:6:setSystemTime	16	static
+../Core/Src/global.c:30:6:resetTimeCounter	16	static
+../Core/Src/global.c:36:9:getTimeCounter	16	static
+../Core/Src/global.c:42:6:decreaseTimeCounter	16	static
+../Core/Src/global.c:47:6:increaseCounter	4	static
+../Core/Src/global.c:52:6:resetCounter	4	static
+../Core/Src/global.c:57:9:getCounter	4	static
+../Core/Src/global.c:62:6:checkSystemTime	4	static
+../Core/Src/global.c:70:6:checkCounter	4	static

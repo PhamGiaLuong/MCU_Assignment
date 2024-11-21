@@ -22,7 +22,8 @@ Core/Src/global.o: ../Core/Src/global.c ../Core/Inc/global.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
- ../Core/Inc/trafficLight.h ../Core/Inc/global.h
+ ../Core/Inc/displayLCD.h ../Core/Inc/global.h ../Core/Inc/I2C_LCD.h \
+ ../Core/Inc/trafficLight.h
 ../Core/Inc/global.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
@@ -48,5 +49,7 @@ Core/Src/global.o: ../Core/Src/global.c ../Core/Inc/global.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
-../Core/Inc/trafficLight.h:
+../Core/Inc/displayLCD.h:
 ../Core/Inc/global.h:
+../Core/Inc/I2C_LCD.h:
+../Core/Inc/trafficLight.h:

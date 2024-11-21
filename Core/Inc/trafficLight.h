@@ -12,7 +12,7 @@
 
 void turnLed(uint8_t lane, uint8_t color);
 void blinkLed(uint8_t color);
-void toggleTrafficLights(void);
+//void toggleTrafficLights(void);
 void clearAllLeds(void);
 
 #endif /* INC_TRAFFICLIGHT_H_ */

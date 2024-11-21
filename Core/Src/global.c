@@ -27,7 +27,7 @@ void setSystemTime(uint8_t color){
 // Reset timeCounter[lane] to systemTime[color]
 // lane: X, Y
 // color: Red, Green, Yellow
-void resetTimeCounter(uint8_t lane, uinr8_t color){
+void resetTimeCounter(uint8_t lane, uint8_t color){
 	timeCounter[lane] = systemTime[color];
 }
 

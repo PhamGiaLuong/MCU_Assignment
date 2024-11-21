@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "main.h"
-#include "I2C_LCD.h"
+#include "displayLCD.h"
 #include "trafficLight.h"
 
 // Lane
@@ -29,7 +29,7 @@
 #define ManualMode	7
 
 void setSystemTime(uint8_t color);
-void resetTimeCounter(uint8_t lane, uinr8_t color);
+void resetTimeCounter(uint8_t lane, uint8_t color);
 uint8_t getTimeCounter(uint8_t lane);
 void decreaseTimeCounter(uint8_t lane);
 void increaseCounter(void);

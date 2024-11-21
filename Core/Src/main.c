@@ -100,13 +100,33 @@ int main(void)
   int a = 0;
   lcd_init();
   char str[20];
-
   while (1)
   {
-	  lcd_goto_XY(1, 0);
-	  sprintf(str, "number: %d", a++);
-	  lcd_send_string(str);
-	  HAL_Delay(1000);
+//		turnLed(X, Red);
+//		turnLed(Y, Yellow);
+//		HAL_Delay(2000);
+//		turnLed(X, Red);
+//		turnLed(Y, Green);
+//		HAL_Delay(2000);
+//		turnLed(X, Yellow);
+//		turnLed(Y, Red);
+//		HAL_Delay(2000);
+//		turnLed(X, Green);
+//		turnLed(Y, Red);
+	  	blinkLed(Green);
+		HAL_Delay(250);
+//		updateLCD_AutoMode();
+//		HAL_Delay(3000);
+//		lcd_clear_display();
+//		HAL_Delay(50);
+//		updateLCD_Change(ModifyMode);
+//		HAL_Delay(3000);
+//		lcd_clear_display();
+//		HAL_Delay(50);
+//		updateLCD_ModifyMode(Green);
+//		HAL_Delay(3000);
+//		lcd_clear_display();
+//		HAL_Delay(50);
 //	  lcd_clear_display();
 //	  lcd_clear_display();
     /* USER CODE END WHILE */
