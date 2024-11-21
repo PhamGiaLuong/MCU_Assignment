@@ -66,8 +66,8 @@ void Error_Handler(void);
 #define USART_RX_GPIO_Port GPIOA
 #define LD2_Pin GPIO_PIN_5
 #define LD2_GPIO_Port GPIOA
-#define Button2_Pin GPIO_PIN_10
-#define Button2_GPIO_Port GPIOB
+#define Button1_Pin GPIO_PIN_10
+#define Button1_GPIO_Port GPIOB
 #define LaneX_B_Pin GPIO_PIN_7
 #define LaneX_B_GPIO_Port GPIOC
 #define LaneY_B_Pin GPIO_PIN_8
@@ -80,8 +80,8 @@ void Error_Handler(void);
 #define TCK_GPIO_Port GPIOA
 #define SWO_Pin GPIO_PIN_3
 #define SWO_GPIO_Port GPIOB
-#define Button1_Pin GPIO_PIN_4
-#define Button1_GPIO_Port GPIOB
+#define Button0_Pin GPIO_PIN_4
+#define Button0_GPIO_Port GPIOB
 #define LaneX_A_Pin GPIO_PIN_6
 #define LaneX_A_GPIO_Port GPIOB
 

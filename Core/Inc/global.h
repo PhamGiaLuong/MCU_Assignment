@@ -13,6 +13,7 @@
 #include "main.h"
 #include "displayLCD.h"
 #include "trafficLight.h"
+#include "button.h"
 
 // Lane
 #define X 0
