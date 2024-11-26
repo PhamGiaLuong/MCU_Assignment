@@ -11,8 +11,8 @@
 #include "global.h"
 
 void turnLed(uint8_t lane, uint8_t color);
-void blinkLed(uint8_t color);
-//void toggleTrafficLights(void);
+void blinkRedLeds(void);
+void blinkGreenLeds(void);
 void clearAllLeds(void);
 
 #endif /* INC_TRAFFICLIGHT_H_ */

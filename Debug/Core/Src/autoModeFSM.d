@@ -1,5 +1,5 @@
-Core/Src/trafficLight.o: ../Core/Src/trafficLight.c \
- ../Core/Inc/trafficLight.h ../Core/Inc/global.h ../Core/Inc/main.h \
+Core/Src/autoModeFSM.o: ../Core/Src/autoModeFSM.c \
+ ../Core/Inc/autoModeFSM.h ../Core/Inc/global.h ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -29,7 +29,7 @@ Core/Src/trafficLight.o: ../Core/Src/trafficLight.c \
  ../Core/Inc/trafficLight.h ../Core/Inc/button.h ../Core/Inc/scheduler.h \
  ../Core/Inc/autoModeFSM.h ../Core/Inc/manualModeFSM.h \
  ../Core/Inc/modifyModeFSM.h
-../Core/Inc/trafficLight.h:
+../Core/Inc/autoModeFSM.h:
 ../Core/Inc/global.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:

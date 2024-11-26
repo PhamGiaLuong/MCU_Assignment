@@ -21,5 +21,7 @@ void initButton(uint8_t numOfButton, uint16_t durationForLongPress, uint8_t Tick
 void buttonReading(void);
 unsigned char isPressedOnButton(uint8_t index);
 unsigned char isLongPressedOnButton(uint8_t index);
+uint8_t hasJustPressedOnButton(uint8_t index);
+uint8_t hasJustLongPressedOnButton(uint8_t index);
 
 #endif /* INC_BUTTON_H_ */

@@ -102,26 +102,14 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   HAL_TIM_Base_Start_IT(&htim2);
+  initScheduler(10);
   lcd_init();
   initButton(2, 1000, 10);
+  addTaskSch(buttonReading, 0, 10);
+  addTaskSch(autoModeFSM, 100, 250);
   while (1)
   {
-	  if(isLongPressedOnButton(0)) turnLed(X, Green);
-	  	  else if(isLongPressedOnButton(1)) turnLed(Y, Green);
-	  	  else if(isPressedOnButton(0)){
-	  		  turnLed(X, Red);
-	  		  lcd_goto_XY(0, 0);
-	  		  lcd_send_string("Press on B1");
-	  	  }
-	  else if(isPressedOnButton(1)){
-		  turnLed(Y, Red);
-  		  lcd_goto_XY(1, 0);
-  		  lcd_send_string("Press on B2");
-	  }else{
-		  clearAllLeds();
-		  lcd_clear_display();
-		  HAL_Delay(50);
-	  }
+	  dispatchTaskSch();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -321,8 +309,7 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-//	timerRun();
-	buttonReading();
+	updateSch();
 }
 
 /* USER CODE END 4 */

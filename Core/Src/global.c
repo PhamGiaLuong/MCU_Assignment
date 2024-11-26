@@ -16,6 +16,9 @@ static uint8_t timeCounter[2] = {7, 5}; // lane X, lane Y
 // Buffer store time value during user changes in Modify mode: before set to systemTime buffer
 static uint8_t counter = 0;
 
+enum systemStates state = InitAuto;
+uint8_t timeFlag = 0;
+
 // Set new value for led[color]
 // color: Red, Green, Yellow
 // value from counter variable
@@ -31,6 +34,12 @@ void resetTimeCounter(uint8_t lane, uint8_t color){
 	timeCounter[lane] = systemTime[color];
 }
 
+// Set timeCounter buffer to 0
+void clearTimeCounter(void){
+	timeCounter[X] = 0;
+	timeCounter[Y] = 0;
+}
+
 // Return timeCounter[lane]
 // lane: X, Y
 uint8_t getTimeCounter(uint8_t lane){
@@ -39,8 +48,9 @@ uint8_t getTimeCounter(uint8_t lane){
 
 // Decrease timeCounter[lane]
 // lane: X, Y
-void decreaseTimeCounter(uint8_t lane){
-	timeCounter[lane]--;
+void decreaseTimeCounter(void){
+	timeCounter[X]--;
+	timeCounter[Y]--;
 }
 
 // Increase counter variable when user presses button in Modify mode
@@ -48,7 +58,17 @@ void increaseCounter(void){
 	counter++;
 }
 
-// Reset counter to 0
+// Decrease counter variable
+void decreaseCounter(void){
+	counter--;
+}
+
+// Set counter to 20
+void setManualCounter(void){
+	counter = 20;
+}
+
+// Set counter to 0
 void resetCounter(void){
 	counter = 0;
 }
@@ -61,7 +81,8 @@ uint8_t getCounter(void){
 // Check systemTime after Modify mode
 void checkSystemTime(void){
 	if(systemTime[Red] != systemTime[Green] + systemTime[Yellow]){
-		systemTime[Green] = (systemTime[Red]/5)*4;
+		if(systemTime[Green] >= systemTime[Red])
+			systemTime[Green] = (systemTime[Red]/5)*4;
 		systemTime[Yellow] = systemTime[Red] - systemTime[Green];
 	}
 }
@@ -69,4 +90,9 @@ void checkSystemTime(void){
 // Check if the counter < 100
 void checkCounter(void){
 	if(counter >= 100) counter = 1;
+}
+
+// Set timeFlag when time expired
+void setTimeFlag(void){
+	timeFlag = 1;
 }

@@ -3,3 +3,5 @@
 ../Core/Src/button.c:53:6:buttonReading	6
 ../Core/Src/button.c:75:15:isPressedOnButton	2
 ../Core/Src/button.c:81:15:isLongPressedOnButton	2
+../Core/Src/button.c:94:9:hasJustPressedOnButton	3
+../Core/Src/button.c:103:9:hasJustLongPressedOnButton	3

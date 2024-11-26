@@ -26,6 +26,8 @@ Core/Src/displayLCD.o: ../Core/Src/displayLCD.c ../Core/Inc/displayLCD.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Core/Inc/displayLCD.h ../Core/Inc/trafficLight.h ../Core/Inc/button.h \
+ ../Core/Inc/scheduler.h ../Core/Inc/autoModeFSM.h \
+ ../Core/Inc/manualModeFSM.h ../Core/Inc/modifyModeFSM.h \
  ../Core/Inc/I2C_LCD.h
 ../Core/Inc/displayLCD.h:
 ../Core/Inc/global.h:
@@ -58,4 +60,8 @@ Core/Src/displayLCD.o: ../Core/Src/displayLCD.c ../Core/Inc/displayLCD.h \
 ../Core/Inc/displayLCD.h:
 ../Core/Inc/trafficLight.h:
 ../Core/Inc/button.h:
+../Core/Inc/scheduler.h:
+../Core/Inc/autoModeFSM.h:
+../Core/Inc/manualModeFSM.h:
+../Core/Inc/modifyModeFSM.h:
 ../Core/Inc/I2C_LCD.h:

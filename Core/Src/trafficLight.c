@@ -55,26 +55,11 @@ void turnLed(uint8_t lane, uint8_t color){
 
 uint8_t toggle = 1;
 
-// Pre-process for blinking led[color]
-// color: Red, Green, Yellow
-void blinkLed(uint8_t color){
+// Blinking Red leds
+void blinkRedLeds(void){
 	if(toggle == 1){
-		switch(color){
-		case Red:
-			turnLed(X, Red);
-			turnLed(Y, Red);
-			break;
-		case Green:
-			turnLed(X, Green);
-			turnLed(Y, Green);
-			break;
-		case Yellow:
-			turnLed(X, Yellow);
-			turnLed(Y, Yellow);
-			break;
-		default:
-			break;
-		}
+		turnLed(X, Red);
+		turnLed(Y, Red);
 		toggle = 0;
 	}else{
 		clearAllLeds();
@@ -82,12 +67,18 @@ void blinkLed(uint8_t color){
 	}
 }
 
-// Toggle the output signal of leds for blinky animation
-//void toggleTrafficLights(void){
-//	HAL_GPIO_TogglePin(GPIOA, LaneY_A_Pin | LaneY_B_Pin);
-//	HAL_GPIO_TogglePin(GPIOB, LaneX_A_Pin);
-//	HAL_GPIO_TogglePin(GPIOC, LaneX_B_Pin);
-//}
+// Blinking Green leds
+void blinkGreenLeds(void){
+	if(toggle == 1){
+		turnLed(X, Green);
+		turnLed(Y, Green);
+		toggle = 0;
+	}else{
+		clearAllLeds();
+		toggle = 1;
+	}
+}
+
 
 // Turn off all traffic leds
 void clearAllLeds(void){

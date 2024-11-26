@@ -1,4 +1,7 @@
-../Core/Src/displayLCD.c:15:6:updateLCD_Change	5
-../Core/Src/displayLCD.c:45:6:updateLCD_AutoMode	1
-../Core/Src/displayLCD.c:56:6:updateLCD_ModifyMode	3
-../Core/Src/displayLCD.c:80:6:updateLCD_ManualMode	1
+../Core/Src/displayLCD.c:14:6:updateLCD_ChangeToAuto	1
+../Core/Src/displayLCD.c:25:6:updateLCD_ChangeToModify	1
+../Core/Src/displayLCD.c:36:6:updateLCD_ChangeToManual	1
+../Core/Src/displayLCD.c:47:6:updateLCD_ManualMode	1
+../Core/Src/displayLCD.c:58:6:updateLCD_TrafficTime	1
+../Core/Src/displayLCD.c:68:6:updateLCD_ModifyRed	1
+../Core/Src/displayLCD.c:79:6:updateLCD_ModifyGreen	1

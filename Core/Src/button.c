@@ -4,7 +4,7 @@
  *  Created on: Oct 27, 2024
  *      Author: phamgialuong
  *      Manual: call initButton function before using
- *      		modify readPin function to fit with your pin config
+ *      		modify readPin function to fit with pin configuration
  */
 
 #include "button.h"
@@ -83,3 +83,27 @@ unsigned char isLongPressedOnButton(uint8_t index){
 	return (flagForLongPressButton[index] == 1) ? 1 : 0;
 }
 
+// Buffer for rising signal detection
+static uint8_t lastSignalPress[maxButton];
+static uint8_t currentSignalPress[maxButton];
+
+static uint8_t lastSignalLongPress[maxButton];
+static uint8_t currentSignalLongPress[maxButton];
+
+// Check for the rising signal on press flag
+uint8_t hasJustPressedOnButton(uint8_t index){
+	lastSignalPress[index] = currentSignalPress[index];
+	currentSignalPress[index] = isPressedOnButton(index);
+	if(lastSignalPress[index]==0 && currentSignalPress[index]==1)
+		return 1;
+	return 0;
+}
+
+// Check for the rising signal on long press flag
+uint8_t hasJustLongPressedOnButton(uint8_t index){
+	lastSignalLongPress[index] = currentSignalLongPress[index];
+	currentSignalLongPress[index] = isLongPressedOnButton(index);
+	if(lastSignalLongPress[index]==0 && currentSignalLongPress[index]==1)
+		return 1;
+	return 0;
+}

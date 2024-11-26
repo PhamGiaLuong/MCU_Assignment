@@ -1,3 +1,4 @@
 ../Core/Src/trafficLight.c:13:6:turnLed	16	static
-../Core/Src/trafficLight.c:60:6:blinkLed	16	static
-../Core/Src/trafficLight.c:93:6:clearAllLeds	8	static
+../Core/Src/trafficLight.c:59:6:blinkRedLeds	8	static
+../Core/Src/trafficLight.c:71:6:blinkGreenLeds	8	static
+../Core/Src/trafficLight.c:84:6:clearAllLeds	8	static

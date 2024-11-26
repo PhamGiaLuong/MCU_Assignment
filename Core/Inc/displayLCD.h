@@ -11,10 +11,13 @@
 #include "global.h"
 #include "I2C_LCD.h"
 
-void updateLCD_Change(uint8_t targetMode);
-void updateLCD_AutoMode(void);
-void updateLCD_ModifyMode(uint8_t color);
+void updateLCD_ChangeToAuto(void);
+void updateLCD_ChangeToModify(void);
+void updateLCD_ChangeToManual(void);
 void updateLCD_ManualMode(void);
+void updateLCD_TrafficTime(void);
+void updateLCD_ModifyRed(void);
+void updateLCD_ModifyGreen(void);
 
 
 #endif /* INC_DISPLAYLCD_H_ */
