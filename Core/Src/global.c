@@ -16,7 +16,10 @@ static uint8_t timeCounter[2] = {7, 5}; // lane X, lane Y
 // Buffer store time value during user changes in Modify mode: before set to systemTime buffer
 static uint8_t counter = 0;
 
-enum systemStates state = InitAuto;
+
+enum systemStates autoState = InitAuto;
+enum systemStates manualState = Sleep;
+enum systemStates modifyState = Sleep;
 uint8_t timeFlag = 0;
 
 // Set new value for led[color]
@@ -67,6 +70,10 @@ void decreaseCounter(void){
 void setManualCounter(void){
 	counter = 20;
 }
+// Plus counter by 20
+void extendManualCounter(void){
+	counter += 20;
+}
 
 // Set counter to 0
 void resetCounter(void){
@@ -89,7 +96,7 @@ void checkSystemTime(void){
 
 // Check if the counter < 100
 void checkCounter(void){
-	if(counter >= 100) counter = 1;
+	if(counter >= 100) counter %= 100;
 }
 
 // Set timeFlag when time expired

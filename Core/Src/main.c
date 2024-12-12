@@ -106,7 +106,11 @@ int main(void)
   lcd_init();
   initButton(2, 1000, 10);
   addTaskSch(buttonReading, 0, 10);
-  addTaskSch(autoModeFSM, 100, 250);
+  addTaskSch(autoModeFSM, 30, 100);
+  addTaskSch(manualModeFSM, 30, 30);
+  addTaskSch(modifyModeFSM, 20, 30);
+	addTaskSch(updateLCD_TrafficTime, 100, 300);
+  addTaskSch(decreaseTimeCounter, 300, 1000);
   while (1)
   {
 	  dispatchTaskSch();

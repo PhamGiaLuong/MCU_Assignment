@@ -1,5 +1,7 @@
-../Core/Src/scheduler.c:17:6:initScheduler	1
-../Core/Src/scheduler.c:22:6:addTaskSch	9
-../Core/Src/scheduler.c:75:11:deleteTaskSch	8
-../Core/Src/scheduler.c:120:6:updateSch	4
-../Core/Src/scheduler.c:130:6:dispatchTaskSch	7
+../Core/Src/scheduler.c:21:6:freeTask	2
+../Core/Src/scheduler.c:32:11:allocateTask	2
+../Core/Src/scheduler.c:42:6:initScheduler	1
+../Core/Src/scheduler.c:47:6:addTaskSch	11
+../Core/Src/scheduler.c:113:11:deleteTaskSch	8
+../Core/Src/scheduler.c:153:6:updateSch	4
+../Core/Src/scheduler.c:163:6:dispatchTaskSch	7

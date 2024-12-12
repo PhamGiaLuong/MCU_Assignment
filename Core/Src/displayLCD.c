@@ -71,7 +71,7 @@ void updateLCD_ModifyRed(void){
 	lcd_send_string(row1);
 
 	lcd_goto_XY(1, 0);
-	sprintf(row2, "Value:    %d ", getCounter());
+	sprintf(row2, "Value:    %d  ", getCounter());
 	lcd_send_string(row2);
 }
 
@@ -82,6 +82,6 @@ void updateLCD_ModifyGreen(void){
 	lcd_send_string(row1);
 
 	lcd_goto_XY(1, 0);
-	sprintf(row2, "Value:    %d ", getCounter());
+	sprintf(row2, "Value:    %d  ", getCounter());
 	lcd_send_string(row2);
 }

@@ -7,133 +7,114 @@
 
 #include "manualModeFSM.h"
 
+void remainingTimeExpired(void){
+	deleteTaskSch(updateLCD_ManualMode);
+	deleteTaskSch(decreaseCounter);
+	// Print change mode info
+	lcd_clear_display();
+	addTaskSch(updateLCD_ChangeToAuto, 50, 0);
+	// Prepare for next mode
+	addTaskSch(lcd_clear_display, 2000, 0);
+	addTaskSch(updateLCD_TrafficTime, 2100, 300);
+	addTaskSch(decreaseTimeCounter, 2100, 1000);
+}
+
+void changeToModifyMode(void){
+	deleteTaskSch(updateLCD_ManualMode);
+	deleteTaskSch(decreaseCounter);
+	// Print change mode info
+	lcd_clear_display();
+	addTaskSch(updateLCD_ChangeToModify, 50, 0);
+	// Prepare for next mode
+	addTaskSch(lcd_clear_display, 2000, 0);
+	addTaskSch(updateLCD_ModifyRed, 2100, 300);
+	addTaskSch(blinkRedLeds, 200, 250);
+	resetCounter();
+	modifyState = WaitRed;
+}
+
+void changeToAmberState(void){
+	deleteTaskSch(updateLCD_ManualMode);
+	// Prepare for next state
+	resetTimeCounter(X, Yellow);
+	resetTimeCounter(Y, Yellow);
+	lcd_clear_display();
+	addTaskSch(updateLCD_TrafficTime, 100, 300);
+	addTaskSch(decreaseTimeCounter, 1000, 1000);
+}
+
+void changeToNextState(uint8_t x, uint8_t y){
+	deleteTaskSch(updateLCD_TrafficTime);
+	lcd_clear_display();
+	addTaskSch(updateLCD_ManualMode, 100, 300);
+	addTaskSch(decreaseCounter, 100, 1000);
+	setManualCounter();
+	turnLed(X, x);
+	turnLed(Y, y);
+}
+
 void manualModeFSM(void){
-	switch(state){
+	switch(manualState){
 	case Man_RedGreen:
-		// Reset remain time
-		if(hasJustPressedOnButton(0)){
-			setManualCounter();
+		// Extend remaining time
+		if(hasJustPressedOnButton(1)){
+			extendManualCounter();
 		}
-		// Remain time expired
+		// Remaining time expired
 		if(getCounter() <= 0){
-			deleteTaskSch(manualModeFSM);
-			deleteTaskSch(updateLCD_ManualMode);
-			deleteTaskSch(decreaseCounter);
-			// Print change mode info
-			lcd_clear_display();
-			addTaskSch(updateLCD_ChangeToAuto, 50, 0);
-			// Prepare for next mode
+			remainingTimeExpired();
 			resetTimeCounter(X, Red);
 			resetTimeCounter(Y, Green);
-			addTaskSch(lcd_clear_display, 2000, 0);
-			addTaskSch(updateLCD_TrafficTime, 2100, 300);
-			addTaskSch(decreaseTimeCounter, 2100, 1000);
-			addTaskSch(autoModeFSM, 200, 50);
-			state = Auto_RedGreen;
+			autoState = Auto_RedGreen;
+			manualState = Sleep;
 		}
-		// Go to Modify mode
+		// Change to Modify mode
 		if(hasJustLongPressedOnButton(0)){
-			deleteTaskSch(manualModeFSM);
-			deleteTaskSch(updateLCD_ManualMode);
-			deleteTaskSch(decreaseCounter);
-			// Print change mode info
-			lcd_clear_display();
-			addTaskSch(updateLCD_ChangeToModify, 50, 0);
-			// Prepare for next mode
-			addTaskSch(lcd_clear_display, 2000, 0);
-			addTaskSch(updateLCD_ModifyRed, 2100, 300);
-			addTaskSch(modifyModeFSM, 200, 50);
-			addTaskSch(blinkRedLeds, 200, 250);
-			resetCounter();
-			state = WaitRed;
+			changeToModifyMode();
+			manualState = Sleep;
 		}
-		if(hasJustPressedOnButton(1)){
-			deleteTaskSch(updateLCD_ManualMode);
-			// Prepare for next mode
+		// Change to next state
+		if(hasJustLongPressedOnButton(1)){
+			changeToAmberState();
 			turnLed(Y, Yellow);
-			resetTimeCounter(X, Yellow);
-			resetTimeCounter(Y, Yellow);
-			lcd_clear_display();
-			addTaskSch(updateLCD_TrafficTime, 100, 300);
-			addTaskSch(decreaseTimeCounter, 1000, 1000);
-			state = Man_RedYellow;
+			manualState = Man_RedYellow;
 		}
 		break;
 	case Man_RedYellow:
 		if(getTimeCounter(X) <= 0){
-			deleteTaskSch(decreaseTimeCounter);
-			deleteTaskSch(updateLCD_TrafficTime);
-			lcd_clear_display();
-			addTaskSch(updateLCD_ManualMode, 100, 300);
-			addTaskSch(decreaseCounter, 100, 1000);
-			setManualCounter();
-			turnLed(X, Green);
-			turnLed(Y, Red);
-			state = Man_GreenRed;
+			changeToNextState(Green, Red);
+			manualState = Man_GreenRed;
 		}
 		break;
 	case Man_GreenRed:
-		// Reset remain time
-		if(hasJustPressedOnButton(0)){
-			setManualCounter();
+		// Extend remaining time
+		if(hasJustPressedOnButton(1)){
+			extendManualCounter();
 		}
-		// Remain time expired
+		// Remaining time expired
 		if(getCounter() <= 0){
-			deleteTaskSch(manualModeFSM);
-			deleteTaskSch(updateLCD_ManualMode);
-			deleteTaskSch(decreaseCounter);
-			// Print change mode info
-			lcd_clear_display();
-			addTaskSch(updateLCD_ChangeToAuto, 50, 0);
-			// Prepare for next mode
+			remainingTimeExpired();
 			resetTimeCounter(X, Green);
 			resetTimeCounter(Y, Red);
-			addTaskSch(lcd_clear_display, 2000, 0);
-			addTaskSch(updateLCD_TrafficTime, 2100, 300);
-			addTaskSch(decreaseTimeCounter, 2100, 1000);
-			addTaskSch(autoModeFSM, 200, 50);
-			state = Auto_GreenRed;
+			autoState = Auto_GreenRed;
+			manualState = Sleep;
 		}
-		// Go to Modify mode
+		// Change to Modify mode
 		if(hasJustLongPressedOnButton(0)){
-			deleteTaskSch(manualModeFSM);
-			deleteTaskSch(updateLCD_ManualMode);
-			deleteTaskSch(decreaseCounter);
-			// Print change mode info
-			lcd_clear_display();
-			addTaskSch(updateLCD_ChangeToModify, 50, 0);
-			// Prepare for next mode
-			addTaskSch(lcd_clear_display, 2000, 0);
-			addTaskSch(updateLCD_ModifyRed, 2100, 300);
-			addTaskSch(modifyModeFSM, 200, 50);
-			addTaskSch(blinkRedLeds, 200, 250);
-			resetCounter();
-			state = WaitRed;
+			changeToModifyMode();
+			manualState = Sleep;
 		}
-		if(hasJustPressedOnButton(1)){
-			deleteTaskSch(updateLCD_ManualMode);
-			// Prepare for next mode
-			turnLed(Y, Yellow);
-			resetTimeCounter(X, Yellow);
-			resetTimeCounter(Y, Yellow);
-			lcd_clear_display();
-			addTaskSch(updateLCD_TrafficTime, 100, 300);
-			addTaskSch(decreaseTimeCounter, 1000, 1000);
-			state = Man_YellowRed;
+		// Change to next state
+		if(hasJustLongPressedOnButton(1)){
+			changeToAmberState();
+			turnLed(X, Yellow);
+			manualState = Man_YellowRed;
 		}
 		break;
 	case Man_YellowRed:
 		if(getTimeCounter(X) <= 0){
-			deleteTaskSch(decreaseTimeCounter);
-			deleteTaskSch(updateLCD_TrafficTime);
-			lcd_clear_display();
-			addTaskSch(updateLCD_ManualMode, 100, 300);
-			addTaskSch(decreaseCounter, 100, 1000);
-			setManualCounter();
-			turnLed(X, Red);
-			turnLed(Y, Green);
-
-			state = Man_RedGreen;
+			changeToNextState(Red, Green);
+			manualState = Man_RedGreen;
 		}
 		break;
 	default:

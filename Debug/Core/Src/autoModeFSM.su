@@ -1,1 +1,2 @@
-../Core/Src/autoModeFSM.c:10:6:autoModeFSM	8	static
+../Core/Src/autoModeFSM.c:10:6:changeToManualMode	8	static
+../Core/Src/autoModeFSM.c:27:6:autoModeFSM	8	static

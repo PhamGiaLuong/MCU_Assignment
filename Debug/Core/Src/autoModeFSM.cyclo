@@ -1,1 +1,2 @@
-../Core/Src/autoModeFSM.c:10:6:autoModeFSM	11
+../Core/Src/autoModeFSM.c:10:6:changeToManualMode	1
+../Core/Src/autoModeFSM.c:27:6:autoModeFSM	14

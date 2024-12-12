@@ -11,8 +11,7 @@ extern I2C_HandleTypeDef hi2c1;  // change your handler here accordingly
 
 #define SLAVE_ADDRESS_LCD (0x21 << 1) // change this according to ur setup
 
-void lcd_send_cmd (char cmd)
-{
+void lcd_send_cmd (char cmd){
   char data_u, data_l;
 	uint8_t data_t[4];
 	data_u = (cmd&0xf0);
@@ -24,8 +23,7 @@ void lcd_send_cmd (char cmd)
 	HAL_I2C_Master_Transmit (&hi2c1, SLAVE_ADDRESS_LCD,(uint8_t *) data_t, 4, 100);
 }
 
-void lcd_send_data (char data)
-{
+void lcd_send_data (char data){
 	char data_u, data_l;
 	uint8_t data_t[4];
 	data_u = (data&0xf0);
@@ -37,7 +35,7 @@ void lcd_send_data (char data)
 	HAL_I2C_Master_Transmit (&hi2c1, SLAVE_ADDRESS_LCD,(uint8_t *) data_t, 4, 100);
 }
 
-void lcd_init (void) {
+void lcd_init (void){
 	lcd_send_cmd (0x33); /* set 4-bits interface */
 	lcd_send_cmd (0x32);
 	HAL_Delay(50);
@@ -54,29 +52,21 @@ void lcd_init (void) {
 	lcd_send_cmd (0x80);
 }
 
-void lcd_send_string (char *str)
-{
+void lcd_send_string (char *str){
 	while (*str) lcd_send_data (*str++);
 }
 
-void lcd_clear_display (void)
-{
+void lcd_clear_display (void){
 	lcd_send_cmd (0x01); //clear display
 }
 
-void lcd_goto_XY (int row, int col)
-{
+void lcd_goto_XY (int row, int col){
 	uint8_t pos_Addr;
-	if (row == 0)
-	{
+	if (row == 0){
 		pos_Addr = 0x80 + col;
-	}
-	else if (row == 1)
-	{
+	}else if (row == 1){
 		pos_Addr = 0xC0 + col;
-	}
-	else
-	{
+	}else{
 		return;
 	}
 	lcd_send_cmd(pos_Addr);

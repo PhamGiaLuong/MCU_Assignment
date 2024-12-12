@@ -33,11 +33,14 @@
 #define ModifyMode	6
 #define ManualMode	7
 
-enum systemStates {InitAuto, Auto_RedGreen, Auto_RedYellow, Auto_GreenRed, Auto_YellowRed,
+enum systemStates {InitAuto, Sleep,
+					Auto_RedGreen, Auto_RedYellow, Auto_GreenRed, Auto_YellowRed,
 					Man_RedGreen, Man_RedYellow, Man_GreenRed, Man_YellowRed,
 					WaitRed, RedReleased, RedPressed, RedLongPressed,
 					WaitGreen, GreenReleased, GreenPressed, GreenLongPressed};
-extern enum systemStates state;
+extern enum systemStates autoState;
+extern enum systemStates manualState;
+extern enum systemStates modifyState;
 
 extern uint8_t timeFlag;
 
@@ -49,6 +52,7 @@ void decreaseTimeCounter(void);
 void increaseCounter(void);
 void decreaseCounter(void);
 void setManualCounter(void);
+void extendManualCounter(void);
 void resetCounter(void);
 uint8_t getCounter(void);
 void checkSystemTime(void);

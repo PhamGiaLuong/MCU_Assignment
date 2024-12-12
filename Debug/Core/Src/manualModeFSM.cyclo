@@ -1,1 +1,5 @@
-../Core/Src/manualModeFSM.c:10:6:manualModeFSM	15
+../Core/Src/manualModeFSM.c:10:6:remainingTimeExpired	1
+../Core/Src/manualModeFSM.c:22:6:changeToModifyMode	1
+../Core/Src/manualModeFSM.c:36:6:changeToAmberState	1
+../Core/Src/manualModeFSM.c:46:6:changeToNextState	1
+../Core/Src/manualModeFSM.c:56:6:manualModeFSM	15
